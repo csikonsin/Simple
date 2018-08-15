@@ -85,7 +85,7 @@ namespace Simple.Core.Views
 
                 var p = HttpContext.Current.Handler as Page;
                 var cmsControl = p.LoadControl(cmsModule.ControlPath);
-                var parameter = ParameterBuilder.Deserialize(module.Settings, cmsModule.ParameterType);
+                var parameter =   ParameterBuilder.Deserialize(module.Parameter, cmsModule.ParameterType);
                 ((IBaseModule)cmsControl).SetParameter(parameter);
 
                 var wrapper = p.LoadControl("~/Modules/BaseModuleWrapper.ascx");

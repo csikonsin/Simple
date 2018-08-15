@@ -1,12 +1,10 @@
 ﻿using Autofac;
-using Simple.Core.ModuleParameters;
+using Simple.Core.Code.ModuleParameters;
 using Simple.Core.Presenter;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace Simple.Core.Views
 {

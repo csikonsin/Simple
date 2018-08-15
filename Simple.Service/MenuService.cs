@@ -13,5 +13,9 @@ namespace Simple.Service
     }
     public class MenuService : IMenuService
     {
+        public Menu GetCurrentMenu(string absolutePath)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

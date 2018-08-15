@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 
 namespace Simple.Data
 {
-    public interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork
     {
         Guid Id { get; }
         IDbConnection Connection { get; }
@@ -18,10 +13,12 @@ namespace Simple.Data
         void Rollback();
 
         IArticleRepository ArticleRepository { get; }
-        //IModuleRepository ModuleRepository { get; }
+        IModuleRepository ModuleRepository { get; }
+        IMenuRepository MenuRepository { get; }
+        IWebsiteRepository WebsiteRepository { get; }
     }
 
-    public sealed class UnitOfWork : IUnitOfWork
+    public sealed class UnitOfWork : IUnitOfWork, IDisposable
     {
         public UnitOfWork()
         {
@@ -49,18 +46,20 @@ namespace Simple.Data
         private IArticleRepository _articleRepository;
         public IArticleRepository ArticleRepository { get { return _articleRepository ?? (_articleRepository = new ArticleRepository(this)); } }
 
-        //private IModuleRepository _moduleRepository;
-        //public IModuleRepository ModuleRepository { get { return _moduleRepository ?? (_moduleRepository = new ModuleRepository(this)); } }
+        private IModuleRepository _moduleRepository;
+        public IModuleRepository ModuleRepository { get { return _moduleRepository ?? (_moduleRepository = new ModuleRepository(this)); } }
 
+        private IMenuRepository _menuRepository;
+        public IMenuRepository MenuRepository { get { return _menuRepository ?? (_menuRepository = new MenuRepository(this)); } }
 
-
-
-
+        private IWebsiteRepository _websiteRepository;
+        public IWebsiteRepository WebsiteRepository { get { return _websiteRepository ?? (_websiteRepository = new WebsiteRepository(this)); } }
 
         private void ResetRepositories()
         {
             _articleRepository = null;
-            //_moduleRepository = null;
+            _moduleRepository = null;
+            _menuRepository = null;
         }
 
         public void Begin()

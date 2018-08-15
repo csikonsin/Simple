@@ -14,6 +14,8 @@ namespace Simple.Domain
 
         public string Parameter { get; set; }
 
+        public int? Position { get; set; }
+
         public int CreatedById { get; set; }
 
         public DateTime CreatedAt { get; set; }

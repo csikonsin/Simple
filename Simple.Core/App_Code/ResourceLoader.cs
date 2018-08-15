@@ -1,4 +1,4 @@
-﻿using CopyCMS.Data;
+﻿using Simple.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,9 +22,9 @@ namespace Simple.Core.Code
         {
             using(var work = new UnitOfWork())
             {
-                var theme = work.WebsiteRepository.GetById(appSettings.WebsiteId);
+                var website = work.WebsiteRepository.GetById(appSettings.WebsiteId);
 
-                return theme.Theme;
+                return website.Theme;
             }
         }
 

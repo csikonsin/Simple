@@ -5,11 +5,11 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace CopyCMS.Modules
+namespace Simple.Core.Views
 {
     public partial class BaseModuleWrapper : System.Web.UI.UserControl
     {
-        public CopyCMS.Code.CmsModule CmsModule { get; set; }
+        public Simple.Core.Code.CmsModule CmsModule { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             var classes = new List<string>() { "module", CmsModule.CssClass };

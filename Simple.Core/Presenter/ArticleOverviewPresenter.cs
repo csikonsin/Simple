@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
-using Simple.Core.ModuleParameters;
+using Simple.Core.Code.ModuleParameters;
 
 namespace Simple.Core.Presenter
 {
