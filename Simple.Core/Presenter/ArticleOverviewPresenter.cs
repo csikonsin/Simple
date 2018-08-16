@@ -18,7 +18,6 @@ namespace Simple.Core.Presenter
     public class ArticlesOverviewParameter : BaseParameter
     {
         public string BackgroundColorHex { get; set; }
-
     }
 
     public class ArticleOverviewPresenter
@@ -38,7 +37,7 @@ namespace Simple.Core.Presenter
             this.articleService = articleService;
             this.module = module;
 
-            this.parameter = this.module?.Parameter.Deserialize<ArticlesOverviewParameter>();
+            this.parameter = ParameterBuilder.Deserialize<ArticlesOverviewParameter>(module.Parameter);
         }
 
         public void LoadArticles()

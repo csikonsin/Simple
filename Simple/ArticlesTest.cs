@@ -5,7 +5,7 @@ using Moq;
 using Simple.Domain;
 using Simple.Core.Presenter;
 using Simple.Services;
-using Simple.Core.Parameters;
+using Simple.Core.Code.ModuleParameters;
 
 namespace Simple
 {
@@ -31,8 +31,6 @@ namespace Simple
 
             mockService.Setup(x => x.GetAll()).Returns(testArticles);
 
-
-
             var testParameter = new ArticlesOverviewParameter()
             {
                 BackgroundColorHex = "#cccccc"
@@ -40,7 +38,7 @@ namespace Simple
 
             var testModule = new Domain.Module()
             {
-                Parameter = testParameter.Serialize()
+                Parameter =  ParameterBuilder.Serialize(testParameter)
             };
 
 

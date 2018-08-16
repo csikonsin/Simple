@@ -1,4 +1,5 @@
-﻿using Simple.Service;
+﻿using Simple.Core.Code.ModuleParameters;
+using Simple.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,7 +73,6 @@ namespace Simple.Core.Views
 
             var controls = new List<Control>();
 
-
             foreach (var module in modules)
             {
                 if (!Code.CmsConfig.CmsModules.ContainsKey(module.ModuleId))
@@ -80,12 +80,11 @@ namespace Simple.Core.Views
                     controls.Add(new LiteralControl() { Text = $"Module with id={module.ModuleId} was not found!" });
                     continue;
                 }
-
                 var cmsModule = Code.CmsConfig.CmsModules[module.ModuleId];
 
                 var p = HttpContext.Current.Handler as Page;
                 var cmsControl = p.LoadControl(cmsModule.ControlPath);
-                var parameter =   ParameterBuilder.Deserialize(module.Parameter, cmsModule.ParameterType);
+                var parameter = ParameterBuilder.Deserialize(module.Parameter, cmsModule.ParameterType);
                 ((IBaseModule)cmsControl).SetParameter(parameter);
 
                 var wrapper = p.LoadControl("~/Modules/BaseModuleWrapper.ascx");

@@ -20,10 +20,10 @@ namespace Simple.Core.Views
             modules.Add(new Domain.Module()
             {
                 Id = 1,
-                Parameter = new ArticlesOverviewParameter()
+                Parameter = ParameterBuilder.Serialize(new ArticlesOverviewParameter()
                 {
                     BackgroundColorHex = "#cc0000"
-                }.Serialize(),
+                }),
                 ModuleId = 1,
                 CreatedAt = DateTime.Now,
                 CreatedById = 1
