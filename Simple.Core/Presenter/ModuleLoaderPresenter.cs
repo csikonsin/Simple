@@ -86,9 +86,11 @@ namespace Simple.Core.Presenter
                 var p = HttpContext.Current.Handler as Page;
                 var cmsControl = p.LoadControl(cmsModule.ControlPath);
 
-                var cpa = (IContainerProviderAccessor)HttpContext.Current.ApplicationInstance;
-                var cp = cpa.ContainerProvider;
-                cp.RequestLifetime.InjectProperties(cmsControl);
+                ((IContainerProviderAccessor)HttpContext.Current.ApplicationInstance)
+                    .ContainerProvider
+                    .RequestLifetime
+                    .InjectProperties(cmsControl)
+                ;
 
                 var parameter = ParameterBuilder.Deserialize(module.Parameter, cmsModule.ParameterType);
                 ((IBaseModule)cmsControl).Module = module;

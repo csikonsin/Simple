@@ -182,6 +182,7 @@
   <ItemGroup>
     <Compile Include="App_Code\AppSettings.cs" />
     <Compile Include="App_Code\CmsConfig.cs" />
+    <Compile Include="App_Code\CmsModule.cs" />
     <Compile Include="App_Code\ModuleParameters\BaseParameter.cs" />
     <Compile Include="App_Code\ResourceLoader.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />

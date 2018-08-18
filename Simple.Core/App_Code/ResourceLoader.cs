@@ -1,4 +1,6 @@
-﻿using Simple.Data;
+﻿using Autofac;
+using Autofac.Integration.Web;
+using Simple.Data;
 using System.Web;
 using System.Web.UI;
 
@@ -38,6 +40,11 @@ namespace Simple.Core.Code
             if (!(HttpContext.Current.Handler is Page page)) return null;
 
             var defaultControl = page.LoadControl($"~/Content/{theme}/Default.ascx");
+            var cp = ((IContainerProviderAccessor)HttpContext.Current.ApplicationInstance).ContainerProvider;
+            foreach (var c in defaultControl.Controls)
+            {
+                cp.RequestLifetime.InjectProperties(c);
+            }
 
             return defaultControl;
         }

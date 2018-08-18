@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Simple.Core.Code
 {
@@ -31,7 +30,7 @@ namespace Simple.Core.Code
             }
         }
 
-        public Dictionary<int, CmsModule> CmsModules { get; protected set; }
+        public Dictionary<int, CmsModule> CmsModules { get;  set; }
 
         public void InitModules()
         {
@@ -48,14 +47,5 @@ namespace Simple.Core.Code
             });
 
         }
-    }
-
-    public class CmsModule
-    {
-        public int ModuleId { get; set; }
-        public string ControlPath { get; set; }
-        public string EditorPath { get; set; }
-        public Type ParameterType { get; set; }
-        public string CssClass { get; set; }
     }
 }

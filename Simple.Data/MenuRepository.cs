@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DapperExtensions;
-using Simple.Domain;
 
 namespace Simple.Data
 {
@@ -17,7 +16,7 @@ namespace Simple.Data
     {
         public MenuRepository(IUnitOfWork work) : base(work) { }
 
-        public Menu GetByPublicUrl(string absolutePath)
+        public Domain.Menu GetByPublicUrl(string absolutePath)
         {
             var p = Predicates.Field<Domain.Menu>(m => m.PublicUrl, Operator.Eq, absolutePath);
             var result = Connection.GetList<Domain.Menu>(p, null, Transaction).FirstOrDefault();
