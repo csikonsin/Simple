@@ -1,20 +1,11 @@
 ﻿using Simple.Core.Code.ModuleParameters;
 using Simple.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Simple.Core.Presenter
 {
     public interface IArticleView
     {
         string Content { get; set; }
-    }
-
-    public class ArticleParameter : BaseParameter
-    {
-        public int ArticleId { get; set; }
     }
 
     public class ArticlePresenter

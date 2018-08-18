@@ -7,9 +7,6 @@ using System.Web.UI.WebControls;
 
 namespace Simple.Core.Views
 {
-
-
-
     public partial class BaseModuleWrapper : System.Web.UI.UserControl
     {
         public Simple.Core.Code.CmsModule CmsModule { get; set; }

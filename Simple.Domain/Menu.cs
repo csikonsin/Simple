@@ -10,6 +10,8 @@ namespace Simple.Domain
     {
         public string PublicUrl { get; set; }
 
+        public string Title { get; set; }
+
         public int? RedirectMenuId { get; set; }
 
         public DateTime CreatedAt { get; set; }

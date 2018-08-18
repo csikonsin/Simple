@@ -29,7 +29,7 @@ namespace Simple.Core.Code
         public string GetStyleBundleVirtualPath()
         {
             var theme = GetTheme();
-            var path = $"~/Content/css/{theme}/bundle";
+            var path = $"~/Content/{theme}/bundle";
             return path;
         }
 

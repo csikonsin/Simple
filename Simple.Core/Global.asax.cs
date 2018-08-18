@@ -25,14 +25,9 @@ namespace Simple.Core
         void Application_Start(object sender, EventArgs e)
         {
             Data.Configuration.Initialize();
-
-            // Code that runs on application startup
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
-
+       
             // Build up your application container and register your dependencies.
             var builder = new ContainerBuilder();
-
 
             builder.Register(c => c.Resolve<HttpContextBase>().Request)
                  .As<HttpRequestBase>()
@@ -50,10 +45,10 @@ namespace Simple.Core
                 .As<HttpContextBase>()
                 .InstancePerRequest();
 
-            builder.RegisterType<WebsiteService>().As<IWebsiteService>();
+            builder.RegisterType<WebsiteService>().As<IWebsiteService>().InstancePerRequest();
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerRequest();
-            builder.RegisterType<ArticleService>().As<IArticleService>();
-            builder.RegisterType<MenuService>().As<IMenuService>();
+            builder.RegisterType<ArticleService>().As<IArticleService>().InstancePerRequest();
+            builder.RegisterType<MenuService>().As<IMenuService>().InstancePerRequest();
 
             builder.RegisterType<AppSettings>().AsSelf().InstancePerLifetimeScope();
             builder.RegisterType<ResourceLoader>().AsSelf();
@@ -67,10 +62,15 @@ namespace Simple.Core
             builder.RegisterGeneratedFactory<ArticlePresenter.Factory>();
             builder.RegisterType<ArticlePresenter>().AsSelf();
 
+            builder.RegisterType<BundleConfig>().AsSelf().InstancePerLifetimeScope();
 
             // Once you're done registering things, set the container
             // provider up with your registrations.
             _containerProvider = new ContainerProvider(builder.Build());
+
+            // Code that runs on application startup
+            RouteConfig.RegisterRoutes(RouteTable.Routes);            
+            ContainerProvider.RequestLifetime.Resolve<BundleConfig>().RegisterBundles(BundleTable.Bundles);
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)
@@ -80,7 +80,7 @@ namespace Simple.Core
             if (requestUri.AbsolutePath.Contains("browserLink")) return;
 
             var menuService = ContainerProvider.RequestLifetime.Resolve<IMenuService>();
-            var menu = menuService.GetCurrentMenu(requestUri.AbsolutePath);
+            var menu = menuService.GetMenu(requestUri.AbsolutePath);
             if (menu == null) return;
 
             Context.RewritePath($"Default.aspx?menuid={menu.Id}");

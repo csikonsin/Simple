@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Simple.Core.Code.ModuleParameters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -29,7 +30,7 @@ namespace Simple.Core.Cms.Tools
 
             article1.Id = work.ArticleRepository.Save(article1);
 
-            var par1 = new Presenter.ArticleParameter()
+            var par1 = new ArticleParameter()
             {
                 ArticleId = article1.Id
             };
@@ -49,7 +50,7 @@ namespace Simple.Core.Cms.Tools
             };
             article2.Id = work.ArticleRepository.Save(article2);
 
-            var par2 = new Presenter.ArticleParameter()
+            var par2 = new ArticleParameter()
             {
                 ArticleId = article2.Id
             };

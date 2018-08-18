@@ -17,6 +17,25 @@ namespace Simple.Core
                 return ph.Controls;
             }
         }
+        public string CssBundlePath
+        {
+            get
+            {
+                return cssBundle.Path;
+            }
+            set
+            {
+                cssBundle.Path = value;
+            }
+        }
+
+        public string PageTitle
+        {
+            get { return Page.Title;  }
+            set {
+                Page.Title = value;
+            }
+        }
 
         public DefaultPresenter.Factory Factory { get; set; }
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Simple.Core.Code.ModuleParameters;
+using System.Collections.Generic;
 
 namespace Simple.Core.Code
 {
@@ -36,13 +37,15 @@ namespace Simple.Core.Code
         {
             if (CmsModules != null || CmsModules?.Count > 0) return;
 
+#pragma warning disable IDE0028 // Initialisierung der Sammlung vereinfachen
             CmsModules = new Dictionary<int, CmsModule>();
+#pragma warning restore IDE0028 // Initialisierung der Sammlung vereinfachen
 
             CmsModules.Add(1, new CmsModule()
             {
                 ControlPath = "~/Views/Article.ascx",
                 EditorPath = "~/Modules/edit_article.aspx",
-                ParameterType = typeof(Presenter.ArticleParameter),
+                ParameterType = typeof(ArticleParameter),
                 CssClass = "article"
             });
 

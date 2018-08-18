@@ -13,6 +13,15 @@ namespace Simple.Core {
     public partial class _Default {
         
         /// <summary>
+        /// cssBundle-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::Microsoft.AspNet.Web.Optimization.WebForms.BundleReference cssBundle;
+        
+        /// <summary>
         /// ph-Steuerelement
         /// </summary>
         /// <remarks>

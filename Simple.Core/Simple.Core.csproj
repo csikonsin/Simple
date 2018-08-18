@@ -145,6 +145,7 @@
     </Content>
     <Content Include="Cms\Tools\Test.aspx" />
     <Content Include="Content\Test\Default.ascx" />
+    <Content Include="Content\Test\reset.css" />
     <Content Include="Content\Test\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
@@ -180,11 +181,14 @@
     <Content Include="Bundle.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Code\AppSettings.cs" />
-    <Compile Include="App_Code\CmsConfig.cs" />
-    <Compile Include="App_Code\CmsModule.cs" />
-    <Compile Include="App_Code\ModuleParameters\BaseParameter.cs" />
-    <Compile Include="App_Code\ResourceLoader.cs" />
+    <Compile Include="Code\AppSettings.cs" />
+    <Compile Include="Code\CmsConfig.cs" />
+    <Compile Include="Code\CmsModule.cs" />
+    <Compile Include="Code\HttpModules\WhitespaceModule.cs" />
+    <Compile Include="Code\ModuleParameters\ArticleParameter.cs" />
+    <Compile Include="Code\ModuleParameters\ArticlesOverviewParameter.cs" />
+    <Compile Include="Code\ModuleParameters\BaseParameter.cs" />
+    <Compile Include="Code\ResourceLoader.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Cms\Tools\Test.aspx.cs">

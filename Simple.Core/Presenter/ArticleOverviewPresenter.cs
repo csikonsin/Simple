@@ -15,11 +15,6 @@ namespace Simple.Core.Presenter
         string BackgroundColorHex {  set; }
     }
 
-    public class ArticlesOverviewParameter : BaseParameter
-    {
-        public string BackgroundColorHex { get; set; }
-    }
-
     public class ArticleOverviewPresenter
     {
         public delegate ArticleOverviewPresenter Factory(IArticlesView view, Domain.Module module);
