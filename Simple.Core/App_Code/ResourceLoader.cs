@@ -8,7 +8,7 @@ namespace Simple.Core.Code
     {
         private readonly Service.IWebsiteService websiteService;
         private readonly AppSettings appSettings;
-        private readonly Data.IUnitOfWork work;
+        private readonly IUnitOfWork work;
 
         public ResourceLoader(AppSettings appSettings, Service.IWebsiteService websiteService, IUnitOfWork work)
         {
@@ -35,7 +35,6 @@ namespace Simple.Core.Code
         public Control LoadDefaultPage()
         {
             var theme = GetTheme();
-
             if (!(HttpContext.Current.Handler is Page page)) return null;
 
             var defaultControl = page.LoadControl($"~/Content/{theme}/Default.ascx");

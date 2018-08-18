@@ -1,4 +1,5 @@
 ﻿using Simple.Core.Code.ModuleParameters;
+using Simple.Core.Views;
 using Simple.Service;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 
-namespace Simple.Core.Views
+namespace Simple.Core.Presenter
 {
     public interface IModuleLoaderView
     {
@@ -47,7 +48,9 @@ namespace Simple.Core.Views
 
         private List<Control> GetControls()
         {
-            Domain.Menu menu = menuService.GetCurrentMenu(HttpContext.Current.Request.Url.AbsolutePath);
+            var menuId = Convert.ToInt32(httpContext.Request.QueryString["menuId"]);
+
+            var menu = work.MenuRepository.GetById(menuId);
 
             if (menu == null)
             {
@@ -55,9 +58,7 @@ namespace Simple.Core.Views
                 return new List<Control> { lt404 };
             }
 
-            int menuId = menu.Id;
-
-            var modules = work.ModuleRepository.GetAllByMenuId(menuId);
+            var modules = work.ModuleRepository.GetAllByMenuId(menu.Id);
             modules = modules.OrderBy((x) =>
             {
                 if (x.Position.HasValue)

@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Simple.Core.Presenter;
 using System;
 using System.Web.UI;
 
@@ -6,7 +7,7 @@ namespace Simple.Core.Views
 {
     public partial class ModuleLoader : System.Web.UI.UserControl, IModuleLoaderView
     {
-        private ModuleLoaderPresenter.Factory Factory { get; set; }
+        public ModuleLoaderPresenter.Factory Factory { get; set; }
         public string Identity { get; set; }
 
         public ControlCollection ControlCollection

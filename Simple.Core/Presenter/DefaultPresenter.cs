@@ -1,4 +1,6 @@
-﻿using Simple.Core.Code;
+﻿using Autofac;
+using Autofac.Integration.Web;
+using Simple.Core.Code;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +29,18 @@ namespace Simple.Core.Presenter
         public void Initialize()
         {
             var defaultControl = loader.LoadDefaultPage();
+
+            var cpa = (IContainerProviderAccessor)HttpContext.Current.ApplicationInstance;
+            var cp = cpa.ContainerProvider;
+
+            foreach (var c in defaultControl.Controls)
+            {
+                cp.RequestLifetime.InjectProperties(c);
+            }
+
+            
+
+            view.ControlCollection.Add(defaultControl);
         }
     }
 }
