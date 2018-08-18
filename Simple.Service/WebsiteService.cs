@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Simple.Service
 {
-    public class WebsiteService
+    public interface IWebsiteService
+    {
+
+    }
+    public class WebsiteService : IWebsiteService
     {
     }
 }

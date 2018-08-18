@@ -1,7 +1,4 @@
 ﻿using Simple.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 
@@ -9,23 +6,22 @@ namespace Simple.Core.Code
 {
     public class ResourceLoader
     {
-        private readonly Service.WebsiteService websiteService;
+        private readonly Service.IWebsiteService websiteService;
         private readonly AppSettings appSettings;
+        private readonly Data.IUnitOfWork work;
 
-        public ResourceLoader(AppSettings appSettings, Service.WebsiteService websiteService)
+        public ResourceLoader(AppSettings appSettings, Service.IWebsiteService websiteService, IUnitOfWork work)
         {
             this.websiteService = websiteService;
             this.appSettings = appSettings;
+            this.work = work;
         }
 
         public string GetTheme()
         {
-            using(var work = new UnitOfWork())
-            {
-                var website = work.WebsiteRepository.GetById(appSettings.WebsiteId);
-
-                return website.Theme;
-            }
+            var website = work.WebsiteRepository.GetById(appSettings.WebsiteId);
+            if (website == null) throw new System.Exception("No website data foundd!");
+            return website.Theme;
         }
 
         public string GetStyleBundleVirtualPath()
@@ -34,6 +30,7 @@ namespace Simple.Core.Code
             var path = $"~/Content/css/{theme}/bundle";
             return path;
         }
+
 
         public Control LoadDefaultPage()
         {

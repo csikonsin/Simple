@@ -1,8 +1,10 @@
 ﻿using Autofac;
 using Autofac.Builder;
 using Autofac.Integration.Web;
+using Simple.Core.Code;
 using Simple.Core.Presenter;
 using Simple.Data;
+using Simple.Service;
 using Simple.Services;
 using System;
 using System.Collections.Generic;
@@ -37,13 +39,18 @@ namespace Simple.Core
             // Build up your application container and register your dependencies.
             var builder = new ContainerBuilder();
 
-            //builder.RegisterType<Views.Presenter>();
-            //builder.RegisterGeneratedFactory<PresenterFactory>();
-
+            builder.RegisterType<WebsiteService>().As<IWebsiteService>();
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerRequest();
             builder.RegisterType<ArticleService>().As<IArticleService>();
+
+
+
+            builder.RegisterType<AppSettings>().AsSelf().InstancePerLifetimeScope();
+            builder.RegisterType<ResourceLoader>().AsSelf();
             builder.RegisterType<ArticleOverviewPresenter>().AsSelf();
             builder.RegisterGeneratedFactory<ArticleOverviewPresenter.Factory>();
+            builder.RegisterType<DefaultPresenter>().AsSelf();
+            builder.RegisterGeneratedFactory<DefaultPresenter.Factory>();
 
             // Once you're done registering things, set the container
             // provider up with your registrations.

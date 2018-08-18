@@ -7,18 +7,18 @@
 // </automatisch generiert>
 //------------------------------------------------------------------------------
 
-namespace Simple.Core.Views {
+namespace Simple.Core.Content {
     
     
-    public partial class Module {
+    public partial class Default {
         
         /// <summary>
-        /// ph-Steuerelement
+        /// m-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder ph;
+        protected global::Simple.Core.Views.ModuleLoader m;
     }
 }

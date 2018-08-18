@@ -8,6 +8,6 @@ namespace Simple.Domain
 {    
     public class Website : BasePoco
     {
-        public string Theme { get; set; }
+        public string Theme { get; set; }        
     }
 }

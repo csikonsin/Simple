@@ -13,12 +13,12 @@ namespace Simple.Core {
     public partial class _Default {
         
         /// <summary>
-        /// module-Steuerelement
+        /// ph-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::Simple.Core.Views.Module module;
+        protected global::System.Web.UI.WebControls.PlaceHolder ph;
     }
 }

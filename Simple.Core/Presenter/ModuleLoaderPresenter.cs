@@ -11,6 +11,7 @@ namespace Simple.Core.Views
     public interface IModuleLoaderView
     {
         ControlCollection ControlCollection { get; }
+        string Identity { get; }
     }
 
     public class ModuleLoaderPresenter
@@ -20,12 +21,14 @@ namespace Simple.Core.Views
         private IModuleLoaderView view;
         private readonly IMenuService menuService;
         private readonly HttpContextBase httpContext;
+        private readonly Data.IUnitOfWork work;
 
-        public ModuleLoaderPresenter(IModuleLoaderView view, HttpContextBase httpContext, IMenuService menuService)
+        public ModuleLoaderPresenter(IModuleLoaderView view, HttpContextBase httpContext, IMenuService menuService, Data.IUnitOfWork work)
         {
             this.view = view ?? throw new ArgumentException("View must be set!");
             this.menuService = menuService;
             this.httpContext = httpContext;
+            this.work = work;
         }
 
         public void Initialize()
@@ -54,25 +57,20 @@ namespace Simple.Core.Views
 
             int menuId = menu.Id;
 
-            List<Domain.Module> modules;
-            using (var work = new Data.UnitOfWork())
+            var modules = work.ModuleRepository.GetAllByMenuId(menuId);
+            modules = modules.OrderBy((x) =>
             {
-                modules = work.ModuleRepository.GetAllByMenuId(menuId);
-                modules = modules.OrderBy((x) =>
+                if (x.Position.HasValue)
                 {
-                    if (x.Position.HasValue)
-                    {
-                        return x.Position.Value;
-                    }
-                    else
-                    {
-                        return Int32.MaxValue;
-                    }
-                }).ToList();
-            }
+                    return x.Position.Value;
+                }
+                else
+                {
+                    return Int32.MaxValue;
+                }
+            }).ToList();
 
             var controls = new List<Control>();
-
             foreach (var module in modules)
             {
                 if (!Code.CmsConfig.CmsModules.ContainsKey(module.ModuleId))
@@ -90,10 +88,9 @@ namespace Simple.Core.Views
                 var wrapper = p.LoadControl("~/Modules/BaseModuleWrapper.ascx");
                 ((BaseModuleWrapper)wrapper).CmsModule = cmsModule;
                 wrapper.FindControl("ph").Controls.Add(cmsControl);
-             
+
                 controls.Add(wrapper);
             }
-
             return controls;
         }
     }
