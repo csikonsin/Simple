@@ -5,12 +5,12 @@ using System.Web.UI;
 
 namespace Simple.Core.Views
 {
-    public class BaseControl : UserControl
+    public class BaseUserControlModule : UserControl, Code.ModuleParameters.IBaseModule
     {
         public Domain.Module Module { get; set; }
     }
 
-    public partial class ArticlesView : BaseControl, IArticlesView
+    public partial class ArticlesView : BaseUserControlModule, IArticlesView
     {
         public ArticleOverviewPresenter.Factory PresenterFactory { get; set; }
 

@@ -143,6 +143,7 @@
     <Content Include="App_Data\Simple_log.ldf">
       <DependentUpon>Simple.mdf</DependentUpon>
     </Content>
+    <Content Include="Cms\Tools\Test.aspx" />
     <Content Include="Content\Test\Default.ascx" />
     <Content Include="Content\Test\Site.css" />
     <Content Include="Default.aspx" />
@@ -171,6 +172,7 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="Views\Article.ascx" />
     <Content Include="Views\Articles.ascx" />
     <Content Include="Views\BaseModuleWrapper.ascx" />
     <Content Include="Views\ModuleLoader.ascx" />
@@ -181,10 +183,16 @@
     <Compile Include="App_Code\AppSettings.cs" />
     <Compile Include="App_Code\CmsConfig.cs" />
     <Compile Include="App_Code\ModuleParameters\BaseParameter.cs" />
-    <Compile Include="App_Code\ModuleParameters\ArticleParameter.cs" />
     <Compile Include="App_Code\ResourceLoader.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Cms\Tools\Test.aspx.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cms\Tools\Test.aspx.designer.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Content\Test\Default.ascx.cs">
       <DependentUpon>Default.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -203,8 +211,16 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Presenter\ArticleOverviewPresenter.cs" />
+    <Compile Include="Presenter\ArticlePresenter.cs" />
     <Compile Include="Presenter\DefaultPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\Article.ascx.cs">
+      <DependentUpon>Article.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Article.ascx.designer.cs">
+      <DependentUpon>Article.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Articles.ascx.cs">
       <DependentUpon>Articles.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

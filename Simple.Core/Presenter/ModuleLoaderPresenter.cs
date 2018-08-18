@@ -1,4 +1,6 @@
-﻿using Simple.Core.Code.ModuleParameters;
+﻿using Autofac;
+using Autofac.Integration.Web;
+using Simple.Core.Code.ModuleParameters;
 using Simple.Core.Views;
 using Simple.Service;
 using System;
@@ -74,19 +76,24 @@ namespace Simple.Core.Presenter
             var controls = new List<Control>();
             foreach (var module in modules)
             {
-                if (!Code.CmsConfig.CmsModules.ContainsKey(module.ModuleId))
+                if (!Code.CmsConfig.Instance.CmsModules.ContainsKey(module.ModuleId))
                 {
                     controls.Add(new LiteralControl() { Text = $"Module with id={module.ModuleId} was not found!" });
                     continue;
                 }
-                var cmsModule = Code.CmsConfig.CmsModules[module.ModuleId];
+                var cmsModule = Code.CmsConfig.Instance.CmsModules[module.ModuleId];
 
                 var p = HttpContext.Current.Handler as Page;
                 var cmsControl = p.LoadControl(cmsModule.ControlPath);
-                var parameter = ParameterBuilder.Deserialize(module.Parameter, cmsModule.ParameterType);
-                ((IBaseModule)cmsControl).SetParameter(parameter);
 
-                var wrapper = p.LoadControl("~/Modules/BaseModuleWrapper.ascx");
+                var cpa = (IContainerProviderAccessor)HttpContext.Current.ApplicationInstance;
+                var cp = cpa.ContainerProvider;
+                cp.RequestLifetime.InjectProperties(cmsControl);
+
+                var parameter = ParameterBuilder.Deserialize(module.Parameter, cmsModule.ParameterType);
+                ((IBaseModule)cmsControl).Module = module;
+
+                var wrapper = p.LoadControl("~/Views/BaseModuleWrapper.ascx");
                 ((BaseModuleWrapper)wrapper).CmsModule = cmsModule;
                 wrapper.FindControl("ph").Controls.Add(cmsControl);
 

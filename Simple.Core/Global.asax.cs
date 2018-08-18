@@ -7,14 +7,9 @@ using Simple.Data;
 using Simple.Service;
 using Simple.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using System.Web;
 using System.Web.Optimization;
 using System.Web.Routing;
-using System.Web.Security;
-using System.Web.SessionState;
 
 namespace Simple.Core
 {
@@ -68,6 +63,10 @@ namespace Simple.Core
             builder.RegisterGeneratedFactory<DefaultPresenter.Factory>();
             builder.RegisterGeneratedFactory<ModuleLoaderPresenter.Factory>();
             builder.RegisterType<ModuleLoaderPresenter>().AsSelf();
+
+            builder.RegisterGeneratedFactory<ArticlePresenter.Factory>();
+            builder.RegisterType<ArticlePresenter>().AsSelf();
+
 
             // Once you're done registering things, set the container
             // provider up with your registrations.

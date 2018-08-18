@@ -3,16 +3,37 @@ using System.Collections.Generic;
 
 namespace Simple.Core.Code
 {
-    public  class CmsConfig
+    public sealed class CmsConfig
     {
-        public static Dictionary<int, CmsModule> CmsModules { get; protected set; }
+        private static CmsConfig instance = null;
+        private static readonly object padlock = new object();
 
         public CmsConfig()
         {
             InitModules();
         }
 
-        public static void InitModules()
+        public static CmsConfig Instance
+        {
+            get
+            {
+                if(instance == null)
+                {
+                    lock (padlock)
+                    {
+                        if(instance == null)
+                        {
+                            instance = new CmsConfig();
+                        }
+                    }
+                }
+                return instance;
+            }
+        }
+
+        public Dictionary<int, CmsModule> CmsModules { get; protected set; }
+
+        public void InitModules()
         {
             if (CmsModules != null || CmsModules?.Count > 0) return;
 
@@ -20,10 +41,10 @@ namespace Simple.Core.Code
 
             CmsModules.Add(1, new CmsModule()
             {
-                ControlPath = "~/Modules/Content.ascx",
-                EditorPath = "~/Modules/edit_content.aspx",
-                ParameterType = typeof(ModuleParameters.ArticleParameter),
-                CssClass = "content"
+                ControlPath = "~/Views/Article.ascx",
+                EditorPath = "~/Modules/edit_article.aspx",
+                ParameterType = typeof(Presenter.ArticleParameter),
+                CssClass = "article"
             });
 
         }

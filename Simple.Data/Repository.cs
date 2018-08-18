@@ -17,7 +17,7 @@ namespace Simple.Data
         T GetById(int id);
         int GetCount();
         List<T> GetList();
-        void Save(T entity);
+        int Save(T entity);
     }
 
     public abstract class BaseRepository<T> : IBaseRepository<T> where T : BasePoco
@@ -63,15 +63,16 @@ namespace Simple.Data
             return result;
         }
 
-        public void Save(T entity)
+        public int Save(T entity)
         {
             if(entity.Id == 0)
             {
-                unitOfWork.Connection.Insert(entity, Transaction);
+                return unitOfWork.Connection.Insert(entity, Transaction);
             }
             else
             {
                 unitOfWork.Connection.Update(entity, Transaction);
+                return entity.Id;
             }
         }
 

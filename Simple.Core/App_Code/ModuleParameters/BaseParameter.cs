@@ -9,14 +9,13 @@ namespace Simple.Core.Code.ModuleParameters
 {
     public interface IBaseModule
     {
-        void SetParameter(BaseParameter parameter);
+        Domain.Module Module { get; set; }
     }
 
     public abstract class BaseParameter
     {
 
     }
-
 
     public static class ParameterBuilder
     {
