@@ -43,10 +43,18 @@ namespace Simple.Core.Code
 
             CmsModules.Add(1, new CmsModule()
             {
-                ControlPath = "~/Views/Article.ascx",
-                EditorPath = "~/Modules/edit_article.aspx",
+                ControlPath = "~/Views/Article/Article.ascx",
+                EditorPath = "~/Views/Article/edit_article.aspx",
                 ParameterType = typeof(ArticleParameter),
                 CssClass = "article"
+            });
+
+            CmsModules.Add(2, new CmsModule()
+            {
+                ControlPath ="~/Views/Articles/Articles.ascx",
+                EditorPath = "~/Views/Articles/edit_articles.aspx",
+                ParameterType = typeof(ArticlesOverviewParameter),
+                CssClass = "articles"
             });
 
         }

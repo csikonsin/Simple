@@ -49,6 +49,7 @@ namespace Simple.Core
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerRequest();
             builder.RegisterType<ArticleService>().As<IArticleService>().InstancePerRequest();
             builder.RegisterType<MenuService>().As<IMenuService>().InstancePerRequest();
+            builder.RegisterType<UserService>().As<IUserService>().InstancePerRequest();
 
             builder.RegisterType<AppSettings>().AsSelf().InstancePerLifetimeScope();
             builder.RegisterType<ResourceLoader>().AsSelf();

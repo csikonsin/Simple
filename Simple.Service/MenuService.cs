@@ -28,7 +28,7 @@ namespace Simple.Service
         public Menu GetCurrentMenu()
         {
             var absolutePath = httpContextBase.Request.Url.AbsolutePath;
-            if(absolutePath == "/Default.aspx")
+            if(absolutePath == "/Default.aspx" || absolutePath == "/Default")
             {
                 absolutePath = "/";
             }
@@ -39,6 +39,11 @@ namespace Simple.Service
 
         public Menu GetMenu(string absolutePath)
         {
+            if (absolutePath == "/Default.aspx" || absolutePath == "/Default")
+            {
+                absolutePath = "/";
+            }
+
             var menu = work.MenuRepository.GetByPublicUrl(absolutePath);
             return menu;
         }

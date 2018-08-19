@@ -27,7 +27,10 @@ namespace Simple.Core.Code.HttpModules
             HttpApplication app = sender as HttpApplication;
             //if (app.Request.RawUrl.Contains(".aspx"))
             //{
-                app.Response.Filter = new WhitespaceFilter(app.Response.Filter);
+            if (false)
+            {
+           //     app.Response.Filter = new WhitespaceFilter(app.Response.Filter);
+            }
             //}
         }
 

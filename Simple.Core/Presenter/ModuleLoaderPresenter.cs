@@ -96,7 +96,14 @@ namespace Simple.Core.Presenter
                 ((IBaseModule)cmsControl).Module = module;
 
                 var wrapper = p.LoadControl("~/Views/BaseModuleWrapper.ascx");
+                ((IContainerProviderAccessor)HttpContext.Current.ApplicationInstance)
+               .ContainerProvider
+               .RequestLifetime
+               .InjectProperties(wrapper)
+                ;
+
                 ((BaseModuleWrapper)wrapper).CmsModule = cmsModule;
+                ((BaseModuleWrapper)wrapper).Module = module;
                 wrapper.FindControl("ph").Controls.Add(cmsControl);
 
                 controls.Add(wrapper);

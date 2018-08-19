@@ -34,11 +34,9 @@ namespace Simple.Core.Views
         protected void Page_Load(object sender, EventArgs e)
         {
             var presenter = PresenterFactory(this, Module);
-            presenter.LoadArticles();            
-        }
+            presenter.LoadArticles();
 
-        protected void Save(object sender, EventArgs e)
-        {
+            pnArticles.ID = "";
         }
     }
 }

@@ -12,5 +12,7 @@ namespace Simple.Core.Code
         public string EditorPath { get; set; }
         public Type ParameterType { get; set; }
         public string CssClass { get; set; }
+        public int EditorWidth { get; set; } = 800;
+        public int EditorHeight { get; set; } = 600;
     }
 }
